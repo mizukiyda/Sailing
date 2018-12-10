@@ -9,12 +9,12 @@
 int FileHandle, y;
 static int i = 0, j = 0;
 char buf[256];
-char c1, c2;				    //MAPとPlayer,Boxに使うchar
+char c1, c2;				    //MAPとPlayer,Enemyに使うchar
 int MAP[MAP_HEIGHT][MAP_WIDTH]; //マップ
 int px, py;				    	//受け取るプレイヤーの変数
-int Box_Count;				    //受け取るBoxの変数;
-static int Box_Pos_x[10];		//受け取るBoxのx座標変数
-static int Box_Pos_y[10];		//受け取るBoxのy座標変数
+int Enemy_Count;				    //受け取るEnemyの変数;
+static int Enemy_Pos_x[10];		//受け取るEnemyのx座標変数
+static int Enemy_Pos_y[10];		//受け取るEnemyのy座標変数
 int lflag;
 
 int Image_Wall  = 0;
@@ -47,22 +47,22 @@ int MAP_Data(int x, int y) {
 	return MAP[y][x];
 }
 
-//Boxの個数を受け取る
-int MAP_Box_Count_Init() {
+//Enemyの個数を受け取る
+int MAP_Enemy_Count_Init() {
 
-	return Box_Count;
+	return Enemy_Count;
 }
 
-//Boxの初期X座標
-int MAP_Box_Pos_Init_x(int num) {
+//Enemyの初期X座標
+int MAP_Enemy_Pos_Init_x(int num) {
 
-	return Box_Pos_x[num];
+	return Enemy_Pos_x[num];
 }
 
-//Boxの初期Y座標
-int MAP_Box_Pos_Init_y(int num) {
+//Enemyの初期Y座標
+int MAP_Enemy_Pos_Init_y(int num) {
 
-	return Box_Pos_y[num];
+	return Enemy_Pos_y[num];
 }
 
 //初期化
@@ -70,9 +70,9 @@ int MAP_Init() {
 	memset(MAP, -1, sizeof(MAP));
 //	px = px;			//受け取ったプレイヤーのx座標を初期化
 //	py = py;			//受け取ったプレイヤーのy座標を初期化
-	Box_Count = 1;	//受け取ったBoxの数の初期化
-//	Box_Pos_x = 5;	//受け取ったBoxのx座標の初期化
-//	Box_Pos_y = 5;	//受け取ったBoxのy座標の初期化
+	Enemy_Count = 1;	//受け取ったEnemyの数の初期化
+//	Enemy_Pos_x = 5;	//受け取ったEnemyのx座標の初期化
+//	Enemy_Pos_y = 5;	//受け取ったEnemyのy座標の初期化
 	i = 0; j = 0;
 
 	//画像の読み込み
@@ -80,7 +80,7 @@ int MAP_Init() {
 	//ImageLoad = LoadGraph("");
 	//ImageGoal = LoadGraph("");
 
-	strcpy(MAPHandle, "MAP/MAP_");
+	strcpy(MAPHandle, "resauce/MAP/MAP_");
 	
 
 	char Handletmp[256];
@@ -150,7 +150,7 @@ int MAP_Init() {
 
 	}
 
-	//c2 = PlayerとBoxのchar
+	//c2 = PlayerとEnemyのchar
 	
 	c2 = FileRead_getc(FileHandle);		//1文字読み込む	
 	px = c2 - '0';				    //PlayerのX座標に代入
@@ -163,7 +163,7 @@ int MAP_Init() {
 	FileRead_getc(FileHandle);
 
 	
-	Box_Count = 0;
+	Enemy_Count = 0;
 
 	
 	while (1) {
@@ -171,16 +171,16 @@ int MAP_Init() {
 		if (c2 == EOF)break;
 		c2 = FileRead_getc(FileHandle);
 		if (c2 == EOF)break;
-		Box_Pos_x[Box_Count] = c2 - '0';;
+		Enemy_Pos_x[Enemy_Count] = c2 - '0';;
 		
 		FileRead_getc(FileHandle);
 		if (c2 == EOF)break;
 		c2 = FileRead_getc(FileHandle);
 		if (c2 == EOF)break;
-		Box_Pos_y[Box_Count] = c2 - '0';;
+		Enemy_Pos_y[Enemy_Count] = c2 - '0';;
 		FileRead_getc(FileHandle);
 		if (c2 == EOF)break;
-		Box_Count++;
+		Enemy_Count++;
 	}
 	
 	
@@ -225,21 +225,21 @@ int MAP_Draw() {
 
 			if (MAP[i][j] == E_Object_Wall)	// プレイヤーヘッダーに
 			{
-				//DrawBox(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
 
 				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
 
 			}
 			if (MAP[i][j] == E_Object_Load)
 			{
-				//DrawBox(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
 			
 				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
 				
 			}
 			if (MAP[i][j] == E_Object_Goal)
 			{
-				//DrawBox(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
 
 				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
 			}
