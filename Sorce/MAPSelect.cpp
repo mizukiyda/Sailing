@@ -34,12 +34,12 @@ int MAPSelect_Init() {
 	//Ç±Ç±Ç≈èâä˙âªÇÇ∑ÇÈ
 
 	SelectNum = 0; // åªç›ÇÃëIëî‘çÜ
-	MAPSelectImage.MAP = LoadGraph("Images/MAP.png");
-	MAPSelectImage.On_MAP = LoadGraph("Images/OnMAP.png");
-	MAPSelectImage.Back = LoadGraph("Images/Back.png");
-	MAPSelectImage.On_Back = LoadGraph("Images/OnBack.png");
-	LoadDivGraph("Images/Number.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.Number);
-	LoadDivGraph("Images/OnNumber.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.On_Number);
+	MAPSelectImage.MAP = LoadGraph("resource/Images/MAP.png");
+	MAPSelectImage.On_MAP = LoadGraph("resource/Images/OnMAP.png");
+	MAPSelectImage.Back = LoadGraph("resource/Images/Back.png");
+	MAPSelectImage.On_Back = LoadGraph("resource/Images/OnBack.png");
+	LoadDivGraph("resource/Images/Number.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.Number);
+	LoadDivGraph("resource/Images/OnNumber.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.On_Number);
 
 	return 0;
 }
