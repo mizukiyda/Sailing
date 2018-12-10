@@ -1,8 +1,10 @@
 // マップ表示基本
+#include "string.h"
 #include "DxLib.h"
 #include "MAP.h"
 #include "Player.h"
 #include "Scene_Mgr.h"
+
 
 
 
