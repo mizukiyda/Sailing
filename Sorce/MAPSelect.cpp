@@ -71,6 +71,7 @@ int MAPSelect_Dpct() {
 		}
 	}
 	/*
+
 	if (Keyboard_Get(KEY_INPUT_LEFT) == 1) {
 		if (SelectNum < (sizeof(MAPSelectMenuElement) / sizeof*(MAPSelectMenuElement)) - 1) {
 			SelectNum += (sizeof(MAPSelectMenuElement) / sizeof*(MAPSelectMenuElement)) / 2;
