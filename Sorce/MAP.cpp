@@ -5,9 +5,6 @@
 #include "Player.h"
 #include "Scene_Mgr.h"
 
-
-
-
 int FileHandle, y;
 static int i = 0, j = 0;
 char buf[256];
@@ -44,7 +41,7 @@ int MAP_Player_Pos_Init_y() {
 }
 
 //MAPの座標
-int MAP_Data(int x, int y) {
+int MAP_Data(int x, int y) {	
 
 	return MAP[y][x];
 }
@@ -70,38 +67,28 @@ int MAP_Enemy_Pos_Init_y(int num) {
 //初期化
 int MAP_Init() {
 	memset(MAP, -1, sizeof(MAP));
-//	px = px;			//受け取ったプレイヤーのx座標を初期化
-//	py = py;			//受け取ったプレイヤーのy座標を初期化
 	Enemy_Count = 1;	//受け取ったEnemyの数の初期化
-//	Enemy_Pos_x = 5;	//受け取ったEnemyのx座標の初期化
-//	Enemy_Pos_y = 5;	//受け取ったEnemyのy座標の初期化
 	i = 0; j = 0;
 
 	//画像の読み込み
 	//ImageWall = LoadGraph("");
-	//ImageLoad = LoadGraph("");
+	//ImageLoad = LoadGraph("");	//画像入れたらコメントアウト解除
 	//ImageGoal = LoadGraph("");
-
-	strcpy(MAPHandle, "resauce/MAP/MAP_");
 	
+	char Handletmp[256];	// 結果的にこの名前のパスでファイルを開く
+	char flagtmp[256];		// MAP_〇…〇の部分
 
-	char Handletmp[256];
+	strcpy(MAPHandle, "resauce/MAP/MAP_");	// MAPHandleに固定文をコピー
 
-	char flagtmp[256];
-	sprintf(flagtmp, "%d", Handleflag);
+	sprintf(flagtmp, "%d", Handleflag);		// falgtmpにMAP_SetHandleflagから数字を入れる
 
+	strcpy(Handletmp, MAPHandle);			// MAPHandleにコピーしたのをコピー
 
+	strcat(Handletmp, flagtmp);				// flagtmpにコピーしたのをコピー
 
-	/*
-	char flagtmp[64];	//突貫 合計１０（９）マップまで
-	flagtmp[0] = Handleflag + '0';
-	flagtmp[1] = NULL;
-	*/
-	strcpy(Handletmp, MAPHandle);
+	strcat(Handletmp, ".csv");				// 最後に.csvをコピー
 
-	strcat(Handletmp, flagtmp);
-
-	strcat(Handletmp, ".csv");
+	// resauce/MAP/MAP_ / %d / .csv	で区画分けしている
 
 	// MAPの読み込み
 	FileHandle = FileRead_open( Handletmp );	// 一行読み込み
@@ -128,7 +115,7 @@ int MAP_Init() {
 			j = 0;							//右に行くのをやめる
 			i++;							//次の行に行く
 		}
-	}
+	} 
 
 	// ファイルを閉じる
 	FileRead_close(FileHandle);
@@ -206,7 +193,7 @@ int MAP_Dpct() {
 //描写
 int MAP_Draw() {
 	//こっちも毎フレーム呼ばれるが計算とは別に書きます
-
+	
 	// マップを描く
 	for (i = 0; i < MAP_HEIGHT; i++)
 	{
@@ -220,34 +207,47 @@ int MAP_Draw() {
 	E_Object_Load,      //歩ける場所
 	E_Object_Goal,      //ゴール
 }E_Object;
-			を入れる*/
+			// プレイヤーヘッダーにを入れる
 
-
-
-
-			if (MAP[i][j] == E_Object_Wall)	// プレイヤーヘッダーに
-			{
-				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
-
-				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
-
-			}
-			if (MAP[i][j] == E_Object_Load)
-			{
-				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
 			
-				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
-				
-			}
-			if (MAP[i][j] == E_Object_Goal)
+			if (MAP[i][j] == E_Object_Wall)		// 壁の描画処理
 			{
-				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
+				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
+			}
 
-				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
+			if (MAP[i][j] == E_Object_Load)		// 床の描画処理
+			{
+				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
+			}
+			if (MAP[i][j] == E_Object_Goal)		// ゴールの描画処理
+			{
+				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
+			}
+			*/
+			if (MAP[i][j] == 0)		// 壁の描画処理
+			{
+				DrawBox(j * MAP_SIZE, i * MAP_SIZE, j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE, GetColor(0, 230, 0), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
+			}
+
+			if (MAP[i][j] == 1)		// 床の描画処理
+			{
+				DrawBox(j * MAP_SIZE, i * MAP_SIZE, j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE, GetColor(122, 255, 122), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
+			}
+			if (MAP[i][j] == 2)		// ゴールの描画処理
+			{
+				DrawBox(j * MAP_SIZE, i * MAP_SIZE, j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE, GetColor(122, 122, 0), TRUE);
+				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
 			}
 		}
+		
 	}
-	//DrawFormatString(100, 200, GetColor(255, 0, 0), "MAP Draw動いてるよん");
+	
+	DrawFormatString(100, 200, GetColor(255, 0, 0), "MAP Draw動いてるよん");
 	return 0;
 }
 

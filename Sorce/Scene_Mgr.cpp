@@ -35,13 +35,13 @@ void Scene_Mgr_Dpct() {
 		break;
 	case E_Scene_Game:
 		//ゲーム画面
-		Enemy_Move();
-		Player_Dpct();
-		UI_Dpct();
-		Sound_Dpct();
+		//Enemy_Move();
+		//Player_Dpct();
+		//UI_Dpct();
+		//Sound_Dpct();
 		break;
 	case E_Scene_Result:
-		Result_Dpct();
+		//Result_Dpct();
 		break;
 	case E_Scene_GameMenu:
 		//ゲームメニュー
@@ -59,17 +59,17 @@ void Scene_Mgr_Draw() {
 		break;
 	case E_Scene_Game:
 		//ゲーム画面
-		Enemy_Draw();
-		Player_Draw();
-		UI_Draw();
-		Sound_Draw();
+		//Enemy_Draw();
+		//Player_Draw();
+		//UI_Draw();
+		//Sound_Draw();
 		//StartMenu_Draw();
 
 		DrawFormatString(0, 00, GetColor(255, 255, 255), "ゲーム画面");
 
 		break;
 	case E_Scene_Result:
-		Result_Draw();
+		//Result_Draw();
 		break;
 	case E_Scene_GameMenu:
 		//ゲームメニュー
@@ -97,15 +97,15 @@ static void Scene_Mgr_Init_Module(E_Scene scene) {
 	case E_Scene_Game:
 		//ゲーム画面
 
-		Enemy_Init();
-		Player_Init();
-		UI_Init();
-		Sound_Init();
+		//Enemy_Init();
+		//Player_Init();
+		//UI_Init();
+		//Sound_Init();
 		//StartMenu_Draw();
 
 		break;
 	case E_Scene_Result:
-		Result_Init();
+		//Result_Init();
 		break;
 	case E_Scene_GameMenu:
 		//ゲームメニュー
@@ -123,12 +123,12 @@ static void Scene_Mgr_End_Module(E_Scene scene) {
 	case E_Scene_Game:
 		//ゲーム画面
 		//Enemy_End();
-		Player_End();
-		UI_End();
-		Sound_End();
+		//Player_End();
+		//UI_End();
+		//Sound_End();
 		break;
 	case E_Scene_Result:
-		Result_End();
+		//Result_End();
 		break;
 	case E_Scene_GameMenu:
 		//ゲームメニュー
