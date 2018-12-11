@@ -153,28 +153,28 @@ int Enemy_Dpct() {
 
 	for (i = 0;i < 4;i++) {
 		if (Drct == E_Drct_Left) {									//もしenemyが左を向いていて
-			if (enemy[i].x - MAP_SIZE * 3 <= player_x) {			//なおかつエネミーの左からプレイヤーが来るなら
+			if (enemy[i].x - MAP_SIZE * 5 <= player_x) {			//なおかつエネミーの左からプレイヤーが来るなら
 				Enemy_Attack_Left();
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Right) {									//もしenemyが右を向いていて
-			if (enemy[i].x + MAP_SIZE * 3 >= player_x) {			//なおかつエネミーの右からプレイヤーが来るなら
+			if (enemy[i].x + MAP_SIZE * 5 >= player_x) {			//なおかつエネミーの右からプレイヤーが来るなら
 				Enemy_Attack_Right();
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Down) {									//もしenemyが下を向いていて
-			if (enemy[i].y - MAP_SIZE * 3 <= player_y) {			//なおかつエネミーの下からプレイヤーが来るなら
+			if (enemy[i].y - MAP_SIZE * 5 <= player_y) {			//なおかつエネミーの下からプレイヤーが来るなら
 				Enemy_Attack_Down();
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Up) {									//もしenemyが上を向いていて
-			if (enemy[i].y + MAP_SIZE * 3 >= player_y) {			//なおかつエネミーの上からプレイヤーが来るなら
+			if (enemy[i].y + MAP_SIZE * 5 >= player_y) {			//なおかつエネミーの上からプレイヤーが来るなら
 				Enemy_Attack_Up();
 				Attack_Flg = true;
 			}
@@ -193,7 +193,7 @@ int Enemy_Attack_Left() {		//左に弾を打つ
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x - MAP_SIZE * 3) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
+	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x - MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
@@ -209,7 +209,7 @@ int Enemy_Attack_Right() {		//右に弾を打つ
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x + MAP_SIZE * 3) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
+	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x + MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
@@ -225,7 +225,7 @@ int Enemy_Attack_Down() {		//下に弾を打つ
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y - MAP_SIZE * 3) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
+	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y - MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
@@ -241,7 +241,7 @@ int Enemy_Attack_Up() {			//上に弾を打つ
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y + MAP_SIZE * 3) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
+	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y + MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
