@@ -1,5 +1,4 @@
 // マップ表示基本
-#include "string.h"
 #include "DxLib.h"
 #include "MAP.h"
 #include "Player.h"
@@ -78,15 +77,15 @@ int MAP_Init() {
 	char Handletmp[256];	// 結果的にこの名前のパスでファイルを開く
 	char flagtmp[256];		// MAP_〇…〇の部分
 
-	strcpy(MAPHandle, "resauce/MAP/MAP_");	// MAPHandleに固定文をコピー
+	strcpy_s(MAPHandle, "resauce/MAP/MAP_");	// MAPHandleに固定文をコピー
 
-	sprintf(flagtmp, "%d", Handleflag);		// falgtmpにMAP_SetHandleflagから数字を入れる
+	sprintf_s(flagtmp, "%d", Handleflag);		// falgtmpにMAP_SetHandleflagから数字を入れる
 
-	strcpy(Handletmp, MAPHandle);			// MAPHandleにコピーしたのをコピー
+	strcpy_s(Handletmp, MAPHandle);			// MAPHandleにコピーしたのをコピー
 
-	strcat(Handletmp, flagtmp);				// flagtmpにコピーしたのをコピー
+	strcat_s(Handletmp, flagtmp);				// flagtmpにコピーしたのをコピー
 
-	strcat(Handletmp, ".csv");				// 最後に.csvをコピー
+	strcat_s(Handletmp, ".csv");				// 最後に.csvをコピー
 
 	// resauce/MAP/MAP_ / %d / .csv	で区画分けしている
 
@@ -120,11 +119,11 @@ int MAP_Init() {
 	// ファイルを閉じる
 	FileRead_close(FileHandle);
 
-	strcpy(Handletmp, MAPHandle);
+	strcpy_s(Handletmp, MAPHandle);
 
-	strcat(Handletmp, flagtmp);
+	strcat_s(Handletmp, flagtmp);
 
-	strcat(Handletmp, ".txt");
+	strcat_s(Handletmp, ".txt");
 
 
 	
@@ -200,33 +199,25 @@ int MAP_Draw() {
 		for (j = 0; j < MAP_WIDTH; j++)
 		{
 
-			/*
-			typedef enum
-{
-	E_Object_Wall,      //行けない場所
-	E_Object_Load,      //歩ける場所
-	E_Object_Goal,      //ゴール
-}E_Object;
-			// プレイヤーヘッダーにを入れる
-
 			
-			if (MAP[i][j] == E_Object_Wall)		// 壁の描画処理
+			if (MAP[i][j] == P_wall)		// 壁の描画処理
 			{
-				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
-				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(0, 230, 0), TRUE);
+				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Wall, TRUE);
 			}
 
-			if (MAP[i][j] == E_Object_Load)		// 床の描画処理
+			if (MAP[i][j] == P_load)		// 床の描画処理
 			{
-				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
-				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 255, 122), TRUE);
+				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Load, TRUE);
 			}
-			if (MAP[i][j] == E_Object_Goal)		// ゴールの描画処理
+			if (MAP[i][j] == E_goal)		// ゴールの描画処理
 			{
-				DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
-				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
+				//DrawEnemy(j * MAP_SIZE, i * MAP_SIZE,j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE,GetColor(122, 122, 255), TRUE);
+				DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
 			}
-			*/
+			
+			/*
 			if (MAP[i][j] == 0)		// 壁の描画処理
 			{
 				DrawBox(j * MAP_SIZE, i * MAP_SIZE, j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE, GetColor(0, 230, 0), TRUE);
@@ -243,6 +234,8 @@ int MAP_Draw() {
 				DrawBox(j * MAP_SIZE, i * MAP_SIZE, j * MAP_SIZE + MAP_SIZE, i * MAP_SIZE + MAP_SIZE, GetColor(122, 122, 0), TRUE);
 				//DrawGraph(j * MAP_SIZE, i * MAP_SIZE, Image_Goal, TRUE);
 			}
+			*/
+			
 		}
 		
 	}
