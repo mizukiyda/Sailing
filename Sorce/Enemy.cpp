@@ -28,7 +28,7 @@ int player_y;						//playerのy座標
 int Player_Hit_Flg = false;
 
 //画像
-int EnemyGyallaly[4];				//敵の画像の変数
+int EnemyGyallaly[12];				//敵の画像の変数
 int EnemyShotGyallaly;				//敵の弾の画像の変数
 
 //enemyへの当たり判定
@@ -40,7 +40,7 @@ int OnActives = true;
 int Enemy_Init() {
 	//初期化処理
 
-	LoadDivGraph("resource/Image/", 2, 2, 1, 11, 6, EnemyGyallaly);									// 敵の画像をロード
+	LoadDivGraph("resource/Image/", 12, 3, 4, 48, 48, EnemyGyallaly);								// 敵の画像をロード
 	LoadDivGraph("resource/Image/", 2, 2, 1, 11, 6, EnemyShotGyallaly);								//敵の弾の画像をロード
 
 
@@ -74,24 +74,82 @@ int Enemy_Dpct() {
 
 	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が道のとき
 	if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Load) {
+		Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+	}
+
+	/*************************************************  Enemyの移動制御  *********************************************************************/
+
+	switch (Drct)
+	{
+		//止まる
+	case E_Drct_Stop:					//動かない
+
+		break;
+
+		//上
+	case E_Drct_Up:						//向きが上なら(1)
+		count_y--;						//ヌルヌル動かす
+		break;
+
+		//左
+	case E_Drct_Left:					//向きが左なら(4)
+		count_x--;						//ヌルヌル動かす
+		break;
+
+		//下
+	case E_Drct_Down:					//向きが下なら(3)
+		count_y++;						//ヌルヌル動かす
+		break;
+
+		//右
+	case E_Drct_Right:					//向きが右なら(2)
+		count_x++;						//ヌルヌル動かす
+		break;
 
 	}
+
 	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が壁のとき
 	if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Wall) {
 
 		if (E_Drct_Up == true) {
-			Drct = E_Drct_Down;
+			while (Drct == 1) {								//上から来たから1が来たらも一度回す
+				Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+			}
 		}
+
 		if (E_Drct_Down == true) {
-			Drct = E_Drct_Up;
+			while (Drct == 3) {								//下から来たから3が来たらも一度回す
+				Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+			}
 		}
+
 		if (E_Drct_Left == true) {
-			Drct = E_Drct_Right;
+			while (Drct == 4) {								//左から来たから4が来たらも一度回す
+				Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+			}
 		}
+
 		if (E_Drct_Right == true) {
-			Drct = E_Drct_Left;
+			while (Drct == 2) {								//右から来たから2が来たらも一度回す
+				Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+			}
+		}
+
+		if (E_Drct_Stop == true) {
+			while (Drct == 0) {								//停止していたから0が来たらも一度回す
+				Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+			}
 		}
 	}
+
+	//count_x/count_yのどれかのカウントが±64なら　>>　Player.x/yの座標更新・カウントとフラグの初期化
+	if (count_x >= MAP_SIZE - 1 || count_y <= -MAP_SIZE + 1 || count_x <= -MAP_SIZE + 1 || count_y >= MAP_SIZE - 1)
+	{
+		//カウントの初期化
+		count_x = 0;
+		count_y = 0;
+	}
+		/**************************************************enemyの攻撃準備***********************************************/
 
 	for (i = 0;i < 4;i++) {
 		if (Drct == E_Drct_Left) {									//もしenemyが左を向いていて

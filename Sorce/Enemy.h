@@ -23,12 +23,13 @@ typedef struct {	//\‘¢‘Ì
 
 typedef enum {
 
-	E_Drct_Up,     //ã
-	E_Drct_Right,  //‰E
-	E_Drct_Down,   //‰º
-	E_Drct_Left,   //¶
+	E_Drct_Stop,	//‚Æ‚Ü‚é	-> 0
+	E_Drct_Up,		//ã		-> 1
+	E_Drct_Right,	//‰E		-> 2
+	E_Drct_Down,	//‰º		-> 3
+	E_Drct_Left,	//¶		-> 4
 
-	E_Drct_None
+	E_Drct_None,
 
 } E_Drct;  //Drct = Direction(Œü‚«)
 
