@@ -34,8 +34,8 @@ int EnemyShotGyallaly;				//敵の弾の画像の変数
 int Enemy_Init() {
 	//初期化処理
 
-	LoadDivBmpToGraph("Image/", 2, 2, 1, 11, 6, EnemyGyallaly);									// 敵の画像をロード
-	LoadDivBmpToGraph("Image/", 2, 2, 1, 11, 6, EnemyShotGyallaly);								//敵の弾の画像をロード
+	LoadDivGraph("resource/Image/", 2, 2, 1, 11, 6, EnemyGyallaly);									// 敵の画像をロード
+	LoadDivGraph("resource/Image/", 2, 2, 1, 11, 6, EnemyShotGyallaly);								//敵の弾の画像をロード
 
 
 	for (i = 0;i < 4;i++) {
