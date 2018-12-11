@@ -7,7 +7,6 @@ extern int Enemy_Draw();
 extern int Enemy_End();
 
 extern int Enemy_MapDeta(int, int);
-extern int Enemy_Move();
 
 extern int Enemy_Attack_Down();
 extern int Enemy_Attack_Up();
