@@ -22,7 +22,7 @@ MenuElement_t MAPSelectMenuElement[] = {
 { 180, 400,-1 }
 };
 
-//Image_t MAPSelectImage;	//画像入れたらコメントアウト解除
+Image_t MAPSelectImage;
 
 
 static int SelectNum;	//選択してる番号
@@ -34,14 +34,13 @@ int MAPSelect_Init() {
 	//ここで初期化をする
 
 	SelectNum = 0; // 現在の選択番号
-	/*	//画像入れたらコメントアウト解除
 	MAPSelectImage.MAP = LoadGraph("Images/MAP.png");
 	MAPSelectImage.On_MAP = LoadGraph("Images/OnMAP.png");
 	MAPSelectImage.Back = LoadGraph("Images/Back.png");
 	MAPSelectImage.On_Back = LoadGraph("Images/OnBack.png");
 	LoadDivGraph("Images/Number.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.Number);
 	LoadDivGraph("Images/OnNumber.png", 10, 10, 1, MAP_SIZE, MAP_SIZE, MAPSelectImage.On_Number);
-	*/
+
 	return 0;
 }
 
@@ -132,7 +131,6 @@ int MAPSelect_Draw() {
 	//こっちも毎フレーム呼ばれますが計算とは別に書きます
 
 	// メニュー項目を描画
-	/*		//画像入れたらコメントアウト解除
 	for (int i = 0; i<sizeof(MAPSelectMenuElement) / sizeof*(MAPSelectMenuElement); i++) 
 	{ 
 		//変換
@@ -195,7 +193,6 @@ int MAPSelect_Draw() {
 
 		}
 	}
-	*/
 	//DrawFormatString(MAPSelectMenuElement[SelectNum].x-20, MAPSelectMenuElement[SelectNum].y, GetColor(255, 255, 255), "→");
 	//DrawFormatString(0, 0, GetColor(255, 255, 255), "selectnum:%d", SelectNum);
 	//DrawFormatString(0, 20, GetColor(255, 255, 255), "配列の数:%d", (sizeof(MAPSelectMenuElement) / sizeof*(MAPSelectMenuElement)));

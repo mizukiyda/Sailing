@@ -4,11 +4,11 @@
 #include "Scene_Mgr.h"
 
 MenuElement_t MenuElement[2] = {
-{ 100, 100, "スタート" }, // タグの中身の順番で格納される。xに100が、yに100が、nameに"ゲームスタート"が
-{ 100, 200, "ゲーム終了" },
+{ 100, 100, "Strat" }, // タグの中身の順番で格納される。xに100が、yに100が、nameに"ゲームスタート"が
+{ 100, 200, "Exit" },
 };
 
-//Image_t Image;	//画像入れたらコメントアウト解除
+Image_t Image;
 
 static int SelectNum;	//選択してる番号
 
@@ -16,13 +16,11 @@ int StartMenu_Init() {
 	//ここで初期化をする
 	
 	 SelectNum = 0; // 現在の選択番号
-
-	/*//画像入れたらコメントアウト解除
-	 Image.Start = LoadGraph("Image/Start.png");
+	Image.Start = LoadGraph("Image/Start.png");
     Image.On_Start = LoadGraph("Image/Start2.png");
 	 Image.End = LoadGraph("Image/End.png");
 	 Image.On_End = LoadGraph("Image/End2.png");
-	 */
+
 	return 0;
 }
 
@@ -66,11 +64,10 @@ int StartMenu_Draw() {
 	//ここで描写
 	//こっちも毎フレーム呼ばれますが計算とは別に書きます
 
-	for (int i = 0; i<2; i++) { // メニュー項目を描画
+	/*for (int i = 0; i<2; i++) { // メニュー項目を描画
 		DrawFormatString(MenuElement[i].x, MenuElement[i].y, GetColor(255, 255, 255), MenuElement[i].name);
-	}
-	/*
-	switch (SelectNum)	//画像入れたらコメントアウト解除
+	}*/
+	switch (SelectNum)
 	{
 	case 0:
 		DrawGraph(MenuElement[0].x, MenuElement[0].y, Image.Start, TRUE);
@@ -84,7 +81,6 @@ int StartMenu_Draw() {
 		break;
 
 	}
-	*/
 	return 0;
 }
 
