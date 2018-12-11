@@ -7,12 +7,18 @@ extern int Enemy_Draw();
 extern int Enemy_End();
 
 extern int Enemy_MapDeta(int, int);
-extern int Enemy_Move();
+
+extern int Enemy_Attack_Down();
+extern int Enemy_Attack_Up();
+extern int Enemy_Attack_Right();
+extern int Enemy_Attack_Left();
 
 typedef struct {	//構造体
-	int x;		//x座標
-	int y;		//y座標
+	int x;		//enemyのx座標
+	int y;		//enemyのy座標
 
+	int ex;		//enemyのbulletのx座標
+	int ey;		//enemyのbulletのy座標
 } S_Enemy;
 
 typedef enum {
