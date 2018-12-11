@@ -1,12 +1,11 @@
 #include "DxLib.h"
 #include "Scene_Mgr.h"
 #include "StartMenu.h"
-#include "Result.h"
+//#include "Result.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "PlayerShot.h"
-#include "UI.h"
-#include "Sound.h"
+//#include "UI.h"
+//#include "Sound.h"
 
 static E_Scene Sceneflag = E_Scene_StartMenu;		//今のシーン
 static E_Scene n_Sceneflag = E_Scene_None;			//次のシーン
@@ -37,8 +36,6 @@ void Scene_Mgr_Dpct() {
 	case E_Scene_Game:
 		//ゲーム画面
 		Enemy_Move();
-		PlayerShot_Dpct();
-		EnemyShot_Move();
 		Player_Dpct();
 		UI_Dpct();
 		Sound_Dpct();
@@ -64,8 +61,6 @@ void Scene_Mgr_Draw() {
 		//ゲーム画面
 		Enemy_Draw();
 		Player_Draw();
-		Playershot_Draw();
-		EnemyShot_Draw();
 		UI_Draw();
 		Sound_Draw();
 		//StartMenu_Draw();
@@ -102,7 +97,6 @@ static void Scene_Mgr_Init_Module(E_Scene scene) {
 	case E_Scene_Game:
 		//ゲーム画面
 
-		Playershot_Init();
 		Enemy_Init();
 		Player_Init();
 		UI_Init();
