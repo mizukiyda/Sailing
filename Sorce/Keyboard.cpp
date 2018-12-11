@@ -1,23 +1,23 @@
-#include<DxLib.h>
-#include "Keyboard.h"
+#include"DxLib.h"
+#include"Keyboard.h"
 
-static int m_Key[256];  // キーの入力状態格納用変数
+static int Key_State[256];	//キーボードの状態
 
-						// キーの入力状態更新
 void Keyboard_Update() {
-	char tmpKey[256];             // 現在のキーの入力状態を格納する
-	GetHitKeyStateAll(tmpKey);  // 全てのキーの入力状態を得る
-	for (int i = 0; i<256; i++) {
-		if (tmpKey[i] != 0) { // i番のキーコードに対応するキーが押されていたら
-			m_Key[i]++;   // 加算
+	char tmpKey[256];			//現在のキー入力を受け取る
+	GetHitKeyStateAll(tmpKey);	//全てのキー入力をtmpKeyに格納。
+
+	for (int i = 0; i < 256; i++) {
+		if (tmpKey[i] != 0) {	//キーが押されると、i番のtmpKeyに格納されるため、0にならない。
+			Key_State[i]++;
 		}
-		else {              // 押されていなければ
-			m_Key[i] = 0; // 0にする
+		else {					//押されてない状態なら、0に戻す。
+			Key_State[i] = 0;
 		}
 	}
 }
 
-// KeyCodeのキーの入力状態を取得する
+//
 int Keyboard_Get(int KeyCode) {
-	return m_Key[KeyCode]; // KeyCodeの入力状態を返す
+	return Key_State[KeyCode];
 }
