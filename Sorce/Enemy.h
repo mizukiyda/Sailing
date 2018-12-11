@@ -32,6 +32,7 @@ typedef enum {
 
 } E_Drct;  //Drct = Direction(向き)
 
+ //オブジェクトの当たり判定用
 typedef enum {
 
 	E_Object_Wall,      //行けない場所
