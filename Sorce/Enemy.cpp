@@ -28,8 +28,9 @@ int player_y;						//playerのy座標
 int Player_Hit_Flg = false;
 
 //画像
-int EnemyGyallaly[12];				//敵の画像の変数
-int EnemyShotGyallaly;				//敵の弾の画像の変数
+int EnemyGyallaly[12];					//敵の画像の変数
+int EnemyShotGyallaly;					//敵の弾の画像の変数
+int EnemyMissGyallaly[3];				//敵が倒された時の画像
 
 //enemyへの当たり判定
 int Enemy_Hit_Flg = false;
@@ -40,8 +41,9 @@ int OnActives = true;
 int Enemy_Init() {
 	//初期化処理
 
-	LoadDivGraph("resource/Image/", 12, 3, 4, 48, 48, EnemyGyallaly);								// 敵の画像をロード
-	LoadDivGraph("resource/Image/", 2, 2, 1, 11, 6, EnemyShotGyallaly);								//敵の弾の画像をロード
+	LoadDivGraph("resource/Image/enemy.png", 12, 3, 4, 48, 48, EnemyGyallaly);									// 敵の画像をロード
+	EnemyShotGyallaly = LoadGraph("resource/Image/EnemyShot.png");												//敵の弾の画像をロード
+	LoadDivGraph("resource/Image/enemymiss.png", 12, 3, 4, 48, 48, EnemyMissGyallaly);							// 敵の画像をロード
 
 
 	for (i = 0;i < ENEMY_MAX;i++) {
@@ -72,10 +74,12 @@ int Enemy_Dpct() {
 		OnActives = false;							//生きている状態をOFFにする
 	}
 
-	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が道のとき
-	if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Load) {
-		Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
-	}
+	if (count_x == 0 || count_y == 0) {				//もしカウントが0なら		
+		//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が道のとき　　　　　-> 0なら
+		if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Load) {
+			Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
+		}
+	}															
 
 	/*************************************************  Enemyの移動制御  *********************************************************************/
 
@@ -108,7 +112,7 @@ int Enemy_Dpct() {
 
 	}
 
-	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が壁のとき
+	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が壁のとき    -> 1なら
 	if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Wall) {
 
 		if (E_Drct_Up == true) {
@@ -252,12 +256,18 @@ int Enemy_Draw() {
 	//描画処理
 	
 	for (i = 0;i < 4;i++) {
-		if (OnActives == true) {																								//もしenemyが生きているのなら
-			DrawGraph(enemy[i].x * MAP_SIZE + count_x, enemy[i].y * MAP_SIZE + count_y, EnemyGyallaly[0], true);				//enemyの描写
-
-			if (Attack_Flg = true) {																							//もし攻撃状態なら
-				DrawGraph(enemy[i].ex, enemy[i].ey, EnemyShotGyallaly, true);													//攻撃の描写								
+		if (OnActives == true) {																										//もしenemyが生きているのなら
+			if (Drct == E_Drct_Stop) {																									//止まっている状態（今は途中でいきなり向きを下になっている）
+				DrawGraph(enemy[i].x * MAP_SIZE + count_x, enemy[i].y * MAP_SIZE + count_y, EnemyGyallaly[0], true);					//enemyの描写
 			}
+
+			if (Attack_Flg = true) {																									//もし攻撃状態なら
+				DrawGraph(enemy[i].ex, enemy[i].ey, EnemyShotGyallaly, true);															//攻撃の描写								
+			}
+		}
+		else																															//もしenemyが生きていないのなら
+		{
+			DrawGraph(enemy[i].x * MAP_SIZE + count_x, enemy[i].y * MAP_SIZE + count_y, EnemyMissGyallaly[0], true);					//enemyが死んだときの描写
 		}
 	}
 	return 0;
