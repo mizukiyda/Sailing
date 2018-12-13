@@ -78,15 +78,15 @@ int MAP_Init() {
 	char Handletmp[256];	// 結果的にこの名前のパスでファイルを開く
 	char flagtmp[256];		// MAP_〇…〇の部分
 
-	strcpy(MAPHandle, "resauce/MAP/MAP_");	// MAPHandleに固定文をコピー
+	strcpy_s(MAPHandle, "resauce/MAP/MAP_");	// MAPHandleに固定文をコピー
 
-	sprintf(flagtmp, "%d", Handleflag);		// falgtmpにMAP_SetHandleflagから数字を入れる
+	sprintf_s(flagtmp, "%d", Handleflag);		// falgtmpにMAP_SetHandleflagから数字を入れる
 
-	strcpy(Handletmp, MAPHandle);			// MAPHandleにコピーしたのをコピー
+	strcpy_s(Handletmp, MAPHandle);			// MAPHandleにコピーしたのをコピー
 
-	strcat(Handletmp, flagtmp);				// flagtmpにコピーしたのをコピー
+	strcat_s(Handletmp, flagtmp);				// flagtmpにコピーしたのをコピー
 
-	strcat(Handletmp, ".csv");				// 最後に.csvをコピー
+	strcat_s(Handletmp, ".csv");				// 最後に.csvをコピー
 
 	// resauce/MAP/MAP_ / %d / .csv	で区画分けしている
 
@@ -120,11 +120,11 @@ int MAP_Init() {
 	// ファイルを閉じる
 	FileRead_close(FileHandle);
 
-	strcpy(Handletmp, MAPHandle);
+	strcpy_s(Handletmp, MAPHandle);
 
-	strcat(Handletmp, flagtmp);
+	strcat_s(Handletmp, flagtmp);
 
-	strcat(Handletmp, ".txt");
+	strcat_s(Handletmp, ".txt");
 
 
 	
