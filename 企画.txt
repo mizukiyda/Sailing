@@ -1,7 +1,7 @@
 
 ƒc[ƒ‹@@@@DXƒ‰ƒCƒuƒ‰ƒŠ(C++)
 
-ì¬ŠúŠÔ@1ƒ•ŒŽ  (2019/1/7/(…))
+ì¬ŠúŠÔ@@@–¢’è
 ƒƒ“ƒo[@@ ‘«—§AÖ“¡AÎ‘qA’†ŽRAì“ˆ@
 
 Title	: –¢’è
@@ -14,22 +14,28 @@ Title	: –¢’è
 –À˜H‚ÉƒvƒŒ[ƒ„[‚Æ“GBƒvƒŒ[ƒ„[‚ð‘€ì‚µA“G‚ð“|‚µ‚È‚ª‚çƒS[ƒ‹‚ð–ÚŽw‚·B
 
 /********************************* ƒXƒg[ƒŠ[  ****************************************/
-‚³‚ç‚í‚ê‚½—öl‚Ìƒ^ƒsƒIƒJ‚¿‚á‚ñ‚ðƒ^ƒsƒIƒJŒN‚ª‚ª‹~‚¢‚És‚­	
+‚³‚ç‚í‚ê‚½—öl‚Ìƒ^ƒsƒIƒJ‚¿‚á‚ñ‚ðƒ^ƒsƒIƒJŒN‚ª‚ª‹~‚¢‚És‚­B
 
 /**********************************  Player *************************************************/
 ƒvƒŒ[ƒ„[‚ÍAƒ^ƒsƒIƒJ‚ð“f‚¢‚Ä“G‚ðUŒ‚B
-player‚Íˆê”­Œ‚‚Á‚½‚çA’e‚Æ’e‚ª“–‚½‚é‚©A“G‚É“–‚½‚é‚©Aplayer‚©‚ç5ƒ}ƒX—£‚ê‚È‚¢ŒÀ‚èAV‚µ‚­‘•“U‚³‚ê‚È‚¢
-ƒvƒŒ[ƒ„[‚Ìƒ‰ƒCƒt‚Í3D
+player‚Íˆê”­Œ‚‚Á‚½‚çA’e‚Æ’e‚ª“–‚½‚é‚©A“G‚É“–‚½‚é‚©Aplayer‚©‚ç5ƒ}ƒX—£‚ê‚È‚¢ŒÀ‚èAV‚µ‚­‘•“U‚³‚ê‚È‚¢B
+ƒvƒŒ[ƒ„[‚Ìƒ‰ƒCƒt‚Í3B
+ƒvƒŒƒCƒ„[‚ÍƒXƒy[ƒXƒL[‚Å’e‚ð”­ŽËiUŒ‚jA\ŽšƒL[‚Åã‰º¶‰E‚Ì“®‚«‚ª‚Å‚«‚éB
+“G‚ÆÚG‚µ‚½ê‡ƒ_ƒ[ƒW‚ðŽó‚¯‚éBiƒ‰ƒCƒt‚ªŒ¸‚éj
 
 /********************************  Enemy  ****************************************************/
-“G‚Í’e‚ð‘Å‚Â‚ªAƒvƒŒ[ƒ„[‚ª–Úü‚É“ü‚Á‚Ä‚¢‚éŽž‚Ì‚Ý@@¨@enemy‚ªplayer‚Ì‚Ù‚¤‚ðŒü‚¢‚Ä‚¢‚éA‚©‚Â
-							player‚ªenemy‚ð’†S‚É5ƒ}ƒX”ÍˆÍ‚É‚¢‚é‚±‚Æ‚ª‘O’ñ
+“G‚Í’e‚ð‘Å‚Â‚ªAƒvƒŒ[ƒ„[‚ª–Úü‚É“ü‚Á‚Ä‚¢‚éŽž‚Ì‚ÝB@@¨@enemy‚ªplayer‚Ì‚Ù‚¤‚ðŒü‚¢‚Ä‚¢‚éA‚©‚Â
+							player‚ªenemy‚ð’†S‚É5ƒ}ƒX”ÍˆÍ‚É‚¢‚é‚±‚Æ‚ª‘O’ñB
 “G‚àˆê”­Œ‚‚Á‚½‚çPlayer‚Æ“¯‚¶ðŒ‚ÅÄ“xŒ‚‚Ä‚é‚æ‚¤‚É‚È‚éB
 “G‚ÌŽí—Þ   1Ží
+“G‚Ì”     4‘Ìi‚Æ¡‚Ì‚Æ‚±‚ë‚µ‚Ä‚¢‚éj
 
 “G‚Ì“®‚«‚Íƒ‰ƒ“ƒ_ƒ€‚·‚éB@‚½‚¾‚µƒ‰ƒ“ƒ_ƒ€‚Å—ˆ‚½“¹‚Í–ß‚ç‚È‚¢‚æ‚¤‚É‚·‚éB
-‹ßÚ‚È‚µB’e‚Í5ƒ}ƒXi‚ñ‚¾‚ç‚«‚¦‚éB
+‹ßÚ‚È‚µB‚½‚¾‚µ“G‚ÆƒvƒŒƒCƒ„[‚ª‚Ô‚Â‚©‚Á‚½iÚGj‚µ‚½ê‡‚ÍAƒvƒŒƒCƒ„[‚ª‚â‚ç‚ê‚½‚Æ‚¢‚¤”»’è‚É‚È‚éB
+Enemy‚Ì‚Ù‚¤‚Í•Ï‰»‚Í‚È‚µ‚Æ‚·‚éB
+’e‚Í5ƒ}ƒXi‚ñ‚¾‚ç‚«‚¦‚éB
 
+“G‚Í“G—p‚ÌEnemy-Map‚ª‘¶Ý‚µ‚Ä‚¨‚èA‚»‚ÌMap‚Å•Ç‚âƒ‰ƒ“ƒ_ƒ€‚É“®‚­”»’f‚ðs‚Á‚Ä‚¢‚éB
 
 /*******************************  Map  *********************************************************/
 ƒ}ƒbƒv‚Íˆê•Ó48 * 48‚Ì³•ûŒ`  ¨@1ƒ}ƒX‚Æ‚¢‚¤‚±‚Æ
@@ -37,16 +43,16 @@ player‚Íˆê”­Œ‚‚Á‚½‚çA’e‚Æ’e‚ª“–‚½‚é‚©A“G‚É“–‚½‚é‚©Aplayer‚©‚ç5ƒ}ƒX—£‚ê‚È‚¢ŒÀ‚
 
 /*******************************  •K—v‚È‘fÞ  ***************************************************/
 EPlayerEEEƒ^ƒsƒIƒJ‚¿‚á‚ñ‚ðƒx[ƒX‚Æ‚µ‚½¢ŠEŠÏ‚É‚·‚é
-EEnemy 
+EEnemy EEEƒ^ƒsƒIƒJ‚¿‚á‚ñ‚Ì¢ŠEŠÏ‚ð•ö‚³‚È‚¢‚æ‚¤‚ÈƒLƒƒƒ‰‚ª–]‚Ü‚µ‚¢
 EƒtƒƒAi°j@E•Ç@@@Eƒ‰ƒCƒtiÔ‚¢ƒn[ƒg‚ÆÁ”ï‚µ‚½—p‚Ì•‚¢ƒn[ƒgj
 EPlayer‚Ì’e    EEnemy ‚Ì’e   EPlayer‚ª“|‚³‚ê‚½Žž‚Ì‚à‚Ìiƒ‰ƒCƒt‚ªƒ[ƒ‚É‚È‚Á‚½Žž)
 EPlayer‚ªƒ_ƒ[ƒW‚ðŽó‚¯‚½Žž‚Ì‚à‚Ì(ƒ‰ƒCƒt‚ª1Œ¸‚é)   EEnemy‚ª“|‚³‚ê‚½Žž‚Ì‚à‚Ì
-EƒXƒ^[ƒgƒƒjƒ…[‰æ–Ê@
+EƒXƒ^[ƒgƒƒjƒ…[‰æ–Ê@ EResult‰æ–Ê@@EƒS[ƒ‹“I‚È‚à‚Ì
 
 /******************************@Žå‚È“à–ó@******************************************************/
 ƒvƒŒ[ƒ„[@@  ‘«—§
  
-ƒGƒlƒ~[@@@  ’†ŽREÎ‘q
+ƒGƒlƒ~[@@@  ’†ŽR
 
 ƒ}ƒbƒv@ @@@ Î‘q
 

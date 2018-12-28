@@ -12,6 +12,7 @@ extern int Enemy_Attack_Down();
 extern int Enemy_Attack_Up();
 extern int Enemy_Attack_Right();
 extern int Enemy_Attack_Left();
+extern int Enemy_Hit();
 
 typedef struct {	//\‘¢‘Ì
 	int x;		//enemy‚ÌxÀ•W
