@@ -3,9 +3,9 @@
 #include"MAP.h"
 #include"Player.h"
 
-#define ENEMY_MAX 4						//敵の最大数
+#define Enemy_Max 4						//敵の最大数
 
-S_Enemy enemy[ENEMY_MAX];					//敵の配列
+S_Enemy enemy[Enemy_Max];					//敵の配列
 
 //for文用に使う変数
 int i, j, k;
@@ -46,13 +46,11 @@ int Enemy_Init() {
 	LoadDivGraph("resource/Image/enemymiss.png", 12, 3, 4, 48, 48, EnemyMissGyallaly);							// 敵の画像をロード
 
 
-	for (i = 0;i < ENEMY_MAX;i++) {
+	for (i = 0;i < Enemy_Max;i++) {
 		enemy[i].x = MAP_Enemy_Pos_Init_x(i);					//MAPからエネミーの初期x座標をもらう
 		enemy[i].y = MAP_Enemy_Pos_Init_y(i);					//MAPからエネミーの初期y座標をもらう
 	}
 
-	player_x = ;						//playerのx座標を入れるための変数
-	player_y = ;						//playerのy座標を入れるための変数
 
 	return 0;
 }
@@ -63,10 +61,14 @@ int Enemy_MapDeta(int x, int y) {
 	return 0;
 }
 
-int Enemy_Dpct() {
+int Enemy_Dpct(int num) {
 
-	enemy[ENEMY_MAX].ex = enemy[ENEMY_MAX].x;		//enemyの弾をEnemyのx座標に格納する
-	enemy[ENEMY_MAX].ey = enemy[ENEMY_MAX].y;		//enemyの弾をEnemyのy座標に格納する
+	//毎回Playerの座標が更新するため
+	player_x = ;						//playerのx座標を入れるための変数
+	player_y = ;						//playerのy座標を入れるための変数
+
+	enemy[num].ex = enemy[num].x;		//enemyの弾をEnemyのx座標に格納する
+	enemy[num].ey = enemy[num].y;		//enemyの弾をEnemyのy座標に格納する
 
 	Enemy_Hit_Flg = ;								//playerからもらったフラグを入れる変数
 
@@ -76,7 +78,7 @@ int Enemy_Dpct() {
 
 	if (count_x == 0 || count_y == 0) {				//もしカウントが0なら		
 		//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が道のとき　　　　　-> 0なら
-		if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Load) {
+		if (Enemy_MapDeta(enemy[num].x, enemy[num].y) == E_Object_Load) {
 			Drct = (E_Drct)GetRand(4);					//（キャスト演算）0～4までの数字で向きをランダムに代入する
 		}
 	}															
@@ -113,7 +115,7 @@ int Enemy_Dpct() {
 	}
 
 	//目の前が壁かどうかの判別をする（enemy専用Mapを見て判断する) -> 目の前が壁のとき    -> 1なら
-	if (Enemy_MapDeta(enemy[ENEMY_MAX].x, enemy[ENEMY_MAX].y) == E_Object_Wall) {
+	if (Enemy_MapDeta(enemy[num].x, enemy[num].y) == E_Object_Wall) {
 
 		if (E_Drct_Up == true) {
 			while (Drct == 1) {								//上から来たから1が来たらも一度回す
@@ -155,31 +157,31 @@ int Enemy_Dpct() {
 	}
 		/**************************************************enemyの攻撃準備***********************************************/
 
-	for (i = 0;i < 4;i++) {
+	for (i = 0;i < Enemy_Max;i++) {
 		if (Drct == E_Drct_Left) {									//もしenemyが左を向いていて
 			if (enemy[i].x - MAP_SIZE * 5 <= player_x) {			//なおかつエネミーの左からプレイヤーが来るなら
-				Enemy_Attack_Left();
+				Enemy_Attack_Left(num);
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Right) {									//もしenemyが右を向いていて
 			if (enemy[i].x + MAP_SIZE * 5 >= player_x) {			//なおかつエネミーの右からプレイヤーが来るなら
-				Enemy_Attack_Right();
+				Enemy_Attack_Right(num);
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Down) {									//もしenemyが下を向いていて
 			if (enemy[i].y - MAP_SIZE * 5 <= player_y) {			//なおかつエネミーの下からプレイヤーが来るなら
-				Enemy_Attack_Down();
+				Enemy_Attack_Down(num);
 				Attack_Flg = true;
 			}
 		}
 
 		if (Drct == E_Drct_Up) {									//もしenemyが上を向いていて
 			if (enemy[i].y + MAP_SIZE * 5 >= player_y) {			//なおかつエネミーの上からプレイヤーが来るなら
-				Enemy_Attack_Up();
+				Enemy_Attack_Up(num);
 				Attack_Flg = true;
 			}
 		}
@@ -188,69 +190,70 @@ int Enemy_Dpct() {
 }
 /*********************************************      弾を打つ（主に攻撃を行う処理）(当たり判定)    ***********************************************************/
 		
-int Enemy_Attack_Left() {		//左に弾を打つ
+int Enemy_Attack_Left(int num) {		//左に弾を打つ
 
-	enemy[ENEMY_MAX].ex -= 5;
+	enemy[num].ex -= 5;
 
-	if (enemy[ENEMY_MAX].ex == player_x && enemy[ENEMY_MAX].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
+	if (enemy[num].ex == player_x && enemy[num].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
 		Player_Hit_Flg = true;
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x - MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
+	if (enemy[num].ex >= enemy[num].x - MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
 	return Player_Hit_Flg;
 }
 
-int Enemy_Attack_Right() {		//右に弾を打つ
+int Enemy_Attack_Right(int num) {		//右に弾を打つ
 
-	enemy[ENEMY_MAX].ex += 5;
+	enemy[num].ex += 5;
 
-	if (enemy[ENEMY_MAX].ex == player_x && enemy[ENEMY_MAX].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
+	if (enemy[num].ex == player_x && enemy[num].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
 		Player_Hit_Flg = true;
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ex >= enemy[ENEMY_MAX].x + MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
+	if (enemy[num].ex >= enemy[num].x + MAP_SIZE * 5) {						//もしenemyの弾がenemyのx座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
 	return Player_Hit_Flg;
 }
 
-int Enemy_Attack_Down() {		//下に弾を打つ
+int Enemy_Attack_Down(int num) {		//下に弾を打つ
 
-	enemy[ENEMY_MAX].ey -= 5;
+	enemy[num].ey -= 5;
 
-	if (enemy[ENEMY_MAX].ex == player_x && enemy[ENEMY_MAX].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
+	if (enemy[num].ex == player_x && enemy[num].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
 		Player_Hit_Flg = true;
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y - MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
+	if (enemy[num].ey >= enemy[num].y - MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
 	return Player_Hit_Flg;
 }
 
-int Enemy_Attack_Up() {			//上に弾を打つ
+int Enemy_Attack_Up(int num) {			//上に弾を打つ
 
-	enemy[ENEMY_MAX].ey += 5;
+	enemy[num].ey += 5;
 
-	if (enemy[ENEMY_MAX].ex == player_x && enemy[ENEMY_MAX].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
+	if (enemy[num].ex == player_x && enemy[num].ey == player_y) {			//もしplayerに当たったらフラグをONにして、Playerに当たり判定を渡す
 		Player_Hit_Flg = true;
 		Attack_Flg = false;																//もしplayer弾とエネミー弾が当たったら消滅する
 	}
 
-	if (enemy[ENEMY_MAX].ey >= enemy[ENEMY_MAX].y + MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
+	if (enemy[num].ey >= enemy[num].y + MAP_SIZE * 5) {						//もしenemyの弾がenemyのy座標を中心に3マスを超えたら、消滅する。
 		Attack_Flg = false;
 	}
 
 	return Player_Hit_Flg;
 }
+
 /********************************************************   Enemyへの当たり判定後の処理　　**********************************************************************/
 int Enemy_Hit() {
 	OnActives = false;
@@ -261,7 +264,7 @@ int Enemy_Hit() {
 int Enemy_Draw() {
 	//描画処理
 	
-	for (i = 0;i < 4;i++) {
+	for (i = 0;i < Enemy_Max;i++) {
 		if (OnActives == true) {																										//もしenemyが生きているのなら
 			if (Drct == E_Drct_Stop) {																									//止まっている状態（今は途中でいきなり向きを下になっている）
 				DrawGraph(enemy[i].x * MAP_SIZE + count_x, enemy[i].y * MAP_SIZE + count_y, EnemyGyallaly[0], true);					//enemyの描写
@@ -277,6 +280,16 @@ int Enemy_Draw() {
 		}
 	}
 	return 0;
+}
+
+int Enemy_Pos_Init_x(int num) {
+
+	return enemy[num].x;
+}
+
+int Enemy_Pos_Init_y(int num) {
+
+	return enemy[num].y;
 }
 
 int Enemy_End() {
